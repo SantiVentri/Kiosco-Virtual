@@ -46,12 +46,45 @@ def lista_productos():
                     # Agregar al carrito
                     carrito.append((cantidad, producto[1], producto[2]))
                     print(f"Producto {producto[1]} agregado al carrito.")
+                    organizar_carrito()
 
 # Función para ver el carrito
 def ver_carrito():
+    if len(carrito) == 0:
+        print("\nEl carrito está vacío.\n")
+    else:
+        total_carrito = 0
+        print("\nCarrito de compras:")
+
+        # Imprimir carrito
+        for item in carrito:
+            total = item[0] * item[2]
+            print(f"{item[0]} x {item[1]} - Total: ARS${total}")
+
+        # Calcular el total del carrito
+        for item in carrito:
+            total_carrito += item[0] * item[2]
+        print(f"\nTotal del carrito: ARS${total_carrito}\n")
+
+def organizar_carrito():
+    print("\nOrganizando el carrito de mayor a menor según la cantidad...")
+
+    # Método de inserción
+    for i in range(1, len(carrito)):
+        aux = carrito[i]
+        j = i - 1
+        while j >= 0 and carrito[j][0] < aux[0]:
+            carrito[j + 1] = carrito[j]
+            j -= 1
+        carrito[j + 1] = aux
+    print("Carrito organizado.\n")
 
 # Función inicial del menú principal
 def main(comando):
+    print('Bienvenido al kiosco virtual.')
 
 # Iniciando la función main
 main(comando)
+
+lista_productos()
+ver_carrito()
