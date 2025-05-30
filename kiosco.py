@@ -101,7 +101,4 @@ def main(comando):
             print("Opción no válida. Intentá de nuevo.")
 
 # Iniciando la función main
-main(comando)
-
-lista_productos()
-ver_carrito()
+main()
