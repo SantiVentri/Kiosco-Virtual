@@ -3,7 +3,7 @@ import random
 # Inicialización de variable
 comando = ""
 
-# Lista de productos [ID, Nombre, Precio, Cantidad]
+# Lista de productos [ID, Nombre, Precio, Stock]
 productos = [
     ["1", "Galletitas Oreo", 550, 55],
     ["2", "Chupetín Pico Dulce", 100, 80],
@@ -17,7 +17,7 @@ productos = [
     ["10", "Palito helado", 600, 200],
 ]
 
-# Lista de carrito
+# Lista de carrito [Cantidad, Nombre, Precio]
 carrito = []
 
 def generar_combo_dia():
@@ -36,7 +36,7 @@ def generar_combo_dia():
     decision = input("\n¿Agregar el combo al carrito? (sí/no): ").lower()
     if decision == "sí":
         for item in combo:
-            carrito.append((1, item[1], item[2]))
+            agregar_producto_carrito(1, item[1], item[2])
         organizar_carrito()
         print("Combo del Día agregado al carrito.\n")
     else:
@@ -67,10 +67,17 @@ def lista_productos():
                         print(f"Ingresar una cantidad válida.")
                         cantidad = int(input(f'Ingresar cantidad de este producto (Unidades restantes: {producto[3]}): '))
 
-                    # Agregar al carrito
-                    carrito.append((cantidad, producto[1], producto[2]))
-                    print(f"Producto {producto[1]} agregado al carrito.")
-                    organizar_carrito()
+                    # Se añade el producto al carrito
+                    agregar_producto_carrito(cantidad, producto[1], producto[2])
+
+                    # Se resta del stock la cantidad reservada a comprar
+                    producto[3] -= cantidad
+
+# Agregar al carrito
+def agregar_producto_carrito(cantidad, nombre, precio):
+    carrito.append((cantidad, nombre, precio))
+    print(f"Producto {nombre} agregado al carrito.")
+    organizar_carrito()
 
 # Función para ver el carrito
 def ver_carrito():
