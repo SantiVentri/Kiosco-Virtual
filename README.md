@@ -7,8 +7,6 @@
   <p>Santino Ventrice - Santino Traversi - Valentín Fernández</p>
 </div>
 <br>
-<h3>Sobre nuestro sistema:</h3>
-<p></p>
 
 <h3>Funciones principales de nuestro sistema:</h3>
 <ol>
@@ -20,6 +18,7 @@
 
 <h3>Conceptos vistos en clase aplicados:</h3>
 <ul>
+  <li>Tipos de variables y datos</li>
   <li>Inputs</li>
   <li>Operadores</li>
   <li>Condicionales</li>
@@ -32,7 +31,8 @@
 
 <h3>Datos adicionales:</h3>
 <ol>
-  <li>Los datos de registro no se guardan luego de cerrar el programa.</li>
   <li>El proceso termina con el agregado de productos al carrito, no se pueden sacar.</li>
   <li>Las promociones son aleatorias por cada ejecución del programa.</li>
+  <li>El stock se actualiza luego de agregar al carrito. Se reserva la cantidad a pesar de que no se completa la compra.</li>
+  <li>Los combos promocionales solo se pueden usar desde el apartado de combos. Si se agregan individualmente, no se aplica el descuento.</li>
 </ol>
