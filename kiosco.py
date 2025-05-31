@@ -1,3 +1,5 @@
+import random
+
 # Inicialización de variable
 comando = ""
 
@@ -17,6 +19,28 @@ productos = [
 
 # Lista de carrito
 carrito = []
+
+def generar_combo_dia():
+    combo = random.randint(productos, 3)
+    print("\nCombo del Día")
+    total = 0
+    for item in combo:
+        print(f"- {item[1]} (ARS${item[2]})")
+        total += item[2]
+
+    descuento = int(total * 0.25)
+    total_descuento = total - descuento
+    print(f"\nPrecio normal: ARS${total}")
+    print(f"Descuento (25%): -ARS${descuento}")
+    print(f"Total con descuento: ARS${total_descuento}")
+    decision = input("\n¿Agregar el combo al carrito? (sí/no): ").lower()
+    if decision == "sí":
+        for item in combo:
+            carrito.append((1, item[1], item[2]))
+        organizar_carrito()
+        print("Combo del Día agregado al carrito.\n")
+    else:
+        print("Combo no agregado.\n")
 
 def lista_productos():
     print("\nBienvenido a la lista de productos de nuestro kiosco. \nEscribí en la consola el número de ID del producto que querés agregar al carrito de compras.\nPodés escribir 'salir' para volver al menú principal.\n")
