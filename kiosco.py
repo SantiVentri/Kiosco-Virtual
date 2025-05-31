@@ -109,22 +109,20 @@ def main():
     
     opcion = ""
 
-    while opcion != "4":
+    while opcion != "salir":
         print("\n--- Menú Principal ---")
         print("1. Ver productos y agregar al carrito")
         print("2. Ver carrito de compras")
-        print("3. Salir")
+        print("Podes escribir 'salir' para terminar el programa")
 
         opcion = input("Seleccioná una opción: ")
 
-        if opcion == "1":
+        if opcion == "salir":
+            print("¡Gracias por usar el kiosco virtual!")
+        elif opcion == "1":
             lista_productos()
         elif opcion == "2":
             ver_carrito()
-        elif opcion == "3":
-            generar_combo_dia()
-        elif opcion == "4":
-            print("¡Gracias por usar el kiosco virtual!")
         else:
             print("Opción no válida. Intentá de nuevo.")
 
