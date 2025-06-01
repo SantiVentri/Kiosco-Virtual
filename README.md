@@ -24,8 +24,8 @@
   <li>Condicionales</li>
   <li>Bucles for y while</li>
   <li>Listas y listas anidadas</li>
-  <li>Funciones</li>
-  <li>Librería random</li>
+  <li>Funciones y parámetros</li>
+  <li>Librería random y uso de randint</li>
   <li>Método de inserción</li>
 </ul>
 
@@ -34,5 +34,5 @@
   <li>El proceso termina con el agregado de productos al carrito, no se pueden sacar.</li>
   <li>Las promociones son aleatorias por cada ejecución del programa.</li>
   <li>El stock se actualiza luego de agregar al carrito. Se reserva la cantidad a pesar de que no se completa la compra.</li>
-  <li>Los combos promocionales solo se pueden usar desde el apartado de combos. Si se agregan individualmente, no se aplica el descuento.</li>
+  <li>Los combos promocionales solo se pueden usar desde el apartado de combos. Si se agregan individualmente los productos, no se aplica el descuento.</li>
 </ol>
