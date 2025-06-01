@@ -119,8 +119,9 @@ def generar_combo_dia():
         # Agregamos cada producto con cantidad 1 y el precio original (sin descuento individual)
         for item in combo:
             # Antes de agregar verificamos stock
+            precio = item[2] * 0.9
             if item[3] > 0:
-                agregar_producto_carrito(1, item[1], item[2])
+                agregar_producto_carrito(1, item[1], precio)
                 item[3] -= 1
             else:
                 print(f"No hay stock suficiente para {item[1]}, no se agregó al combo.")
