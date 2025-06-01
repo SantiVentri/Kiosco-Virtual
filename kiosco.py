@@ -98,11 +98,13 @@ def generar_combo_dia():
         if n not in numeros:
             numeros.append(n)
 
-    combo = [productos[i] for i in numeros]
+    combo_dia = [productos[i] for i in numeros]
+    return combo_dia
 
+def ver_combo(combo_dia):
     print("\n------------------- Combo del Día -------------------\n")
     total = 0
-    for item in combo:
+    for item in combo_dia:
         print(f"- {item[1]} (Precio: ARS${item[2]})")
         total += item[2]
 
@@ -117,7 +119,7 @@ def generar_combo_dia():
     decision = input("\n¿Querés agregar el combo al carrito? (sí/no): ").lower()
     if decision == "si" or decision == "sí":
         # Agregamos cada producto con cantidad 1 y el precio original (sin descuento individual)
-        for item in combo:
+        for item in combo_dia:
             # Antes de agregar verificamos stock
             precio = item[2] * 0.9
             if item[3] > 0:
@@ -131,6 +133,7 @@ def generar_combo_dia():
 
 # Función inicial del menú principal
 def main():
+    combo_dia = generar_combo_dia()
     print('Bienvenido al kiosco virtual.')
     
     opcion = ""
@@ -151,7 +154,7 @@ def main():
         elif opcion == "2":
             ver_carrito()
         elif opcion == "3":
-            generar_combo_dia()
+            ver_combo(combo_dia)
         else:
             print("Opción no válida. Intentá de nuevo.")
 
