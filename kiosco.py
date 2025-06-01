@@ -20,55 +20,20 @@ productos = [
 # Lista de carrito [Cantidad, Nombre, Precio]
 carrito = []
 
-def generar_combo_dia():
-    numeros = []
-    while len(numeros) < 3:
-        n = random.randint(0, len(productos)-1) 
-        if n not in numeros:
-            numeros.append(n)
-
-    combo = [productos[i] for i in numeros]
-
-    print("\n--- Combo del Día ---")
-    total = 0
-    for item in combo:
-        print(f"- {item[1]} (Precio: ARS${item[2]})")
-        total += item[2]
-
-    descuento_porcentaje = 10  # descuento fijo 10%
-    descuento = int(total * descuento_porcentaje / 100)
-    total_con_descuento = total - descuento
-
-    print(f"\nPrecio normal: ARS${total}")
-    print(f"Descuento aplicado: {descuento_porcentaje}% (-ARS${descuento})")
-    print(f"Total con descuento: ARS${total_con_descuento}")
-
-    decision = input("\n¿Querés agregar el combo al carrito? (sí/no): ").lower()
-    if decision == "si" or decision == "sí":
-        # Agregamos cada producto con cantidad 1 y el precio original (sin descuento individual)
-        for item in combo:
-            # Antes de agregar verificamos stock
-            if item[3] > 0:
-                agregar_producto_carrito(1, item[1], item[2])
-                item[3] -= 1
-            else:
-                print(f"No hay stock suficiente para {item[1]}, no se agregó al combo.")
-        organizar_carrito()
-        print("Combo del día agregado al carrito.\n")
-    else:
-        print("Combo no agregado.\n")
-
 def lista_productos():
-    print("\nBienvenido a la lista de productos de nuestro kiosco. \nEscribí en la consola el número de ID del producto que querés agregar al carrito de compras.\nPodés escribir 'salir' para volver al menú principal.\n")
+    print("\n------------------- Lista de productos -------------------\n")
+    print("Bienvenido a la lista de productos de nuestro kiosco.\n\nEscribí en la consola el número de ID del producto que querés agregar al carrito de compras.\n\nPodés escribir 'salir' para volver al menú principal.\n")
 
     # Imprime cada producto de la lista linea por linea
+    print("['ID', Nombre, Precio, Cantidad restante]\n")
     for producto in productos:
         print(f"{producto}")
+    print("\n")
         
     id = ""
     while id != "salir":
         # Pregunta el ID del producto a agregar al carrito
-        id = input('\nID: ')
+        id = input('ID: ')
 
         if id == "salir":
             print("\nSaliendo de la lista de productos...\n")
@@ -92,17 +57,16 @@ def lista_productos():
 # Agregar al carrito
 def agregar_producto_carrito(cantidad, nombre, precio):
     carrito.append((cantidad, nombre, precio))
-    print(f"Producto {nombre} agregado al carrito.")
+    print(f"* Producto {nombre} agregado al carrito.")
     organizar_carrito()
 
 # Función para ver el carrito
 def ver_carrito():
+    print("\n------------------- Carrito de compras -------------------\n")
     if len(carrito) == 0:
         print("\nEl carrito está vacío.\n")
     else:
         total_carrito = 0
-        print("\nCarrito de compras:")
-
         # Imprimir carrito
         for item in carrito:
             total = item[0] * item[2]
@@ -126,6 +90,44 @@ def organizar_carrito():
         carrito[j + 1] = aux
     print("Carrito organizado.\n")
 
+
+def generar_combo_dia():
+    numeros = []
+    while len(numeros) < 3:
+        n = random.randint(0, len(productos)-1) 
+        if n not in numeros:
+            numeros.append(n)
+
+    combo = [productos[i] for i in numeros]
+
+    print("\n------------------- Combo del Día -------------------\n")
+    total = 0
+    for item in combo:
+        print(f"- {item[1]} (Precio: ARS${item[2]})")
+        total += item[2]
+
+    descuento_porcentaje = 10  # descuento fijo 10%
+    descuento = int(total * descuento_porcentaje / 100)
+    total_con_descuento = total - descuento
+
+    print(f"\nPrecio normal: ARS${total}")
+    print(f"Descuento aplicado: {descuento_porcentaje}% (-ARS${descuento})")
+    print(f"Total con descuento: ARS${total_con_descuento}")
+
+    decision = input("\n¿Querés agregar el combo al carrito? (sí/no): ").lower()
+    if decision == "si" or decision == "sí":
+        # Agregamos cada producto con cantidad 1 y el precio original (sin descuento individual)
+        for item in combo:
+            # Antes de agregar verificamos stock
+            if item[3] > 0:
+                agregar_producto_carrito(1, item[1], item[2])
+                item[3] -= 1
+            else:
+                print(f"No hay stock suficiente para {item[1]}, no se agregó al combo.")
+        print("Combo del día agregado al carrito.\n")
+    else:
+        print("Combo no agregado.\n")
+
 # Función inicial del menú principal
 def main():
     print('Bienvenido al kiosco virtual.')
@@ -133,12 +135,13 @@ def main():
     opcion = ""
 
     while opcion != "salir":
-        print("\n--- Menú Principal ---")
+        print("\n------------------- Menú Principal -------------------\n")
         print("1. Ver productos y agregar al carrito")
         print("2. Ver carrito de compras")
-        print("Podes escribir 'salir' para terminar el programa")
+        print("3. Ver el combo del día")
+        print("\nPodes escribir 'salir' para terminar el programa")
 
-        opcion = input("Seleccioná una opción: ")
+        opcion = input("\nSeleccioná una opción: ")
 
         if opcion == "salir":
             print("¡Gracias por usar el kiosco virtual!")
