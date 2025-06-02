@@ -19,20 +19,20 @@ carrito = []
 
 def lista_productos():
     print("\n------------------- Lista de productos -------------------\n")
-    print("Bienvenido a la lista de productos de nuestro kiosco.\n\nEscribí en la consola el número de ID del producto que querés agregar al carrito de compras.\n\nPodés escribir 'salir' para volver al menú principal.\n")
+    print("Bienvenido a la lista de productos de nuestro kiosco.\n\nEscribí en la consola el número de ID del producto que querés agregar al carrito de compras.\n\nPodés ingresar -1 para volver al menú principal.\n")
 
     # Imprime cada producto de la lista linea por linea
-    print("['ID', Nombre, Precio, Cantidad restante]\n")
+    print("[ID, Nombre, Precio, Cantidad restante]\n")
     for producto in productos:
         print(f"{producto}")
     print("\n")
         
-    id = ""
-    while id != "salir":
+    id = 0
+    while id != -1:
         # Pregunta el ID del producto a agregar al carrito
-        id = input('ID: ')
+        id = int(input('ID: '))
 
-        if id == "salir":
+        if id == -1:
             print("\nSaliendo de la lista de productos...\n")
         else:
             # Busca en la lista de productos producto por producto hasta que el ID ingresado coincida con el ID de algún producto
@@ -51,7 +51,7 @@ def lista_productos():
                     # Se resta del stock la cantidad reservada a comprar
                     producto[3] -= cantidad
             
-            print("Escribí en la consola el número de ID del producto que querés agregar al carrito de compras.\nPodés escribir 'salir' para volver al menú principal.\n")
+            print("Escribí en la consola el número de ID del producto que querés agregar al carrito de compras.\nPodés ingresar -1 para volver al menú principal.\n")
 
 # Agregar al carrito
 def agregar_producto_carrito(cantidad, nombre, precio):
@@ -76,11 +76,11 @@ def ver_carrito():
             total_carrito += item[0] * item[2]
         print(f"\nTotal del carrito: ARS${total_carrito}\n")
 
-        opcion = ""
-        while opcion != "salir":
-            print("¿Querés sacar algún producto del carrito?\n(Escribi el número del producto que quieras eliminar o 'salir' para volver al menú)\n")
+        opcion = 0
+        while opcion != -1:
+            print("¿Querés sacar algún producto del carrito?\n(Escribí el número del producto que quieras eliminar o ingresá -1 para volver al menú)\n")
             opcion = input(">> ")
-            if opcion == "salir":
+            if opcion == -1:
                 print('Saliendo del carrito...')
             else:
                 opcion = int(opcion)
@@ -102,7 +102,6 @@ def organizar_carrito():
             j -= 1
         carrito[j + 1] = aux
     print("* Carrito organizado.\n")
-
 
 def generar_combo_dia():
     numeros = []
@@ -149,24 +148,24 @@ def main():
     combo_dia = generar_combo_dia()
     print('Bienvenido al kiosco virtual.')
     
-    opcion = ""
+    opcion = 0
 
-    while opcion != "salir":
+    while opcion != -1:
         print("\n------------------- Menú Principal -------------------\n")
         print("1. Ver productos y agregar al carrito")
         print("2. Ver carrito de compras")
         print("3. Ver el combo del día")
         print("\nPodes escribir 'salir' para terminar el programa")
 
-        opcion = input("\nSeleccioná una opción: ")
+        opcion = int(input("\nSeleccioná una opción: "))
 
-        if opcion == "salir":
+        if opcion == -1:
             print("¡Gracias por usar el kiosco virtual!")
-        elif opcion == "1":
+        elif opcion == 1:
             lista_productos()
-        elif opcion == "2":
+        elif opcion == 2:
             ver_carrito()
-        elif opcion == "3":
+        elif opcion == 3:
             ver_combo(combo_dia)
         else:
             print("Opción no válida. Intentá de nuevo.")
