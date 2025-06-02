@@ -53,11 +53,13 @@ def lista_productos():
 
                     # Se resta del stock la cantidad reservada a comprar
                     producto[3] -= cantidad
+            
+            print("Escribí en la consola el número de ID del producto que querés agregar al carrito de compras.\nPodés escribir 'salir' para volver al menú principal.\n")
 
 # Agregar al carrito
 def agregar_producto_carrito(cantidad, nombre, precio):
     carrito.append((cantidad, nombre, precio))
-    print(f"* Producto {nombre} agregado al carrito.")
+    print(f"\n* Producto {nombre} agregado al carrito.")
     organizar_carrito()
 
 # Función para ver el carrito
@@ -77,6 +79,20 @@ def ver_carrito():
             total_carrito += item[0] * item[2]
         print(f"\nTotal del carrito: ARS${total_carrito}\n")
 
+        opcion = ""
+        while opcion != "salir":
+            print("¿Querés sacar algún producto del carrito?\n(Escribi el número del producto que quieras eliminar o 'salir' para volver al menú)\n")
+            opcion = input(">> ")
+            if opcion == "salir":
+                print('Saliendo del carrito...')
+            else:
+                opcion = int(opcion)
+                for i in range(len(carrito)):
+                    producto = carrito[opcion]
+                    if opcion == i:
+                        carrito.pop(opcion)
+                        print(f"* {producto[1]} eliminado del carrito.\n")
+
 def organizar_carrito():
     print("\nOrganizando el carrito de mayor a menor según la cantidad...")
 
@@ -88,7 +104,7 @@ def organizar_carrito():
             carrito[j + 1] = carrito[j]
             j -= 1
         carrito[j + 1] = aux
-    print("Carrito organizado.\n")
+    print("* Carrito organizado.\n")
 
 
 def generar_combo_dia():
