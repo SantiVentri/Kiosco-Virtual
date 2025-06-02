@@ -1,8 +1,5 @@
 import random
 
-# Inicialización de variable
-comando = ""
-
 # Lista de productos [ID, Nombre, Precio, Stock]
 productos = [
     ["1", "Galletitas Oreo", 550, 55],
