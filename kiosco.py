@@ -2,16 +2,16 @@ import random
 
 # Lista de productos [ID, Nombre, Precio, Stock]
 productos = [
-    ["1", "Galletitas Oreo", 550, 55],
-    ["2", "Chupetín Pico Dulce", 100, 80],
-    ["3", "Alfajor Jorgito", 300, 120],
-    ["4", "Coca-Cola 500ml", 750, 100],
-    ["5", "Papas Lays", 800, 150],
-    ["6", "Chicle Topline", 150, 40],
-    ["7", "Bon o Bon", 200, 90],
-    ["8", "Agua mineral 500ml", 500, 70],
-    ["9", "Tita", 180, 60],
-    ["10", "Palito helado", 600, 200],
+    [1, "Galletitas Oreo", 550, 55],
+    [2, "Chupetín Pico Dulce", 100, 80],
+    [3, "Alfajor Jorgito", 300, 120],
+    [4, "Coca-Cola 500ml", 750, 100],
+    [5, "Papas Lays", 800, 150],
+    [6, "Chicle Topline", 150, 40],
+    [7, "Bon o Bon", 200, 90],
+    [8, "Agua mineral 500ml", 500, 70],
+    [9, "Tita", 180, 60],
+    [10, "Palito helado", 600, 200],
 ]
 
 # Lista de carrito [Cantidad, Nombre, Precio]
@@ -42,7 +42,10 @@ def lista_productos():
 
                     # Si el usuario pide más de la cantidad disponible o 0
                     while cantidad > producto[3] or cantidad == 0:
-                        print(f"Ingresar una cantidad válida.")
+                        if cantidad == 0:
+                            print("Ingresar una cantidad válida.")
+                        else:
+                            print("Ups. No tenemos tanto stock. Intentar con una cantidad válida.")
                         cantidad = int(input(f'Ingresar cantidad de este producto (Unidades restantes: {producto[3]}): '))
 
                     # Se añade el producto al carrito
